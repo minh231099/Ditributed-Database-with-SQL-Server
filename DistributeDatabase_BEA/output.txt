@@ -1,0 +1,79 @@
+	C1	C2	C3	Affinity
+AP1	1	0	1	16
+AP2	0	1	0	14
+AP3	1	0	1	6
+AP4	0	1	0	1
+
+	Affinity Matrix
+	C1	C2	C3
+C1	0	0	22	
+C2	0	0	0	
+C3	22	0	0	
+------------------------------------------------------------
+	Affinity Matrix sau khi đường chéo chính được tính giá trị
+	C1	C2	C3
+C1	22	0	22	
+C2	0	0	0	
+C3	22	0	22	
+------------------------------------------------------------
+Tìm vị trí thích hợp của C3
+	C3	C1	C2
+C1	22	22	0
+C2	0	0	0
+C3	22	22	0
+Cont: 1936
+
+	C1	C3	C2
+C1	22	22	0
+C2	0	0	0
+C3	22	22	0
+Cont: 1936
+
+	C1	C2	C3
+C1	22	0	22
+C2	0	0	0
+C3	22	0	22
+Cont: 0
+
+Cont lớn nhất: 1936
+C3 nằm ở vị trí 1
+----------------------------------------------------------
+	Affinity Matrix sau khi sắp xếp lại
+				C3	C1	C2
+			C3	22	22	0	
+			C1	22	22	0	
+			C2	0	0	0	
+------------------------------------------------------------
+Tính Z
+Top Conner Gồm: C3, C1
+Bottom Conner Gồm: C2
+Có AP1, AP3 sử dụng Top Conner
+Nên TCW = AFF(AP1) + AFF(AP3) = 22
+Có AP2, AP4 sử dụng Bottom Conner
+Nên BCW = AFF(AP2) + AFF(AP4) = 15
+Không có AP nào sử dụng cả Top Conner và Bottom Conner
+Nên BOCW = 0
+Z = 22*15 - 0^2 = 330 > -2147483648 --> MaxZ = 330
+
+Top Conner Gồm: C3
+Bottom Conner Gồm: C1, C2
+Không có AP nào chỉ sử dụng Top Conner
+Nên TCW = 0
+Có AP2, AP4 sử dụng Bottom Conner
+Nên BCW = AFF(AP2) + AFF(AP4) = 15
+Có AP1, AP3 sử dụng cả Top Conner và Bottom Conner
+Nên BOCW = AFF(AP1) + AFF(AP3) = 22
+Z = 0*15 - 22^2 = -484 < 330 --> MaxZ không thay đổi
+
+Tính toán Inner Block
+Top Conner Gồm: C3, C2
+Bottom Conner Gồm: C1
+Có AP2, AP4 sử dụng Top Conner
+Nên TCW = AFF(AP2) + AFF(AP4) = 15
+Không có AP nào chỉ sử dụng Bottom Conner
+Nên BCW = 0
+Có AP1, AP3 sử dụng cả Top Conner và Bottom Conner
+Nên BOCW = AFF(AP1) + AFF(AP3) = 22
+Z = 15*0 - 22^2 = -484 < 330 --> MaxZ không thay đổi
+------------------------------------------------------------
+Giá trị lớn nhất của Z là 330 nên ta phân thành hai vùng: (C1, C3) va (C2)
